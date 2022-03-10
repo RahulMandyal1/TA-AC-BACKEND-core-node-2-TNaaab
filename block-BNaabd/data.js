@@ -3,7 +3,6 @@ let server = http.createServer(handleRequest);
 var qs = require("querystring");
 
 function handleRequest(request, response) {
-  let requestHeader = request.headers["content-type"];
   // making a variable in which we can store the  data  because right now we have no database connectivity
   // where we can store  the data
   let data = "";
@@ -13,15 +12,18 @@ function handleRequest(request, response) {
   });
 
   request.on("end", () => {
-    if (requestHeader === "application/x-www-form-urlencoded") {
+    if (request.method === "POST" && request.url === "/form") {
       let result = qs.parse(data);
-      response.end(result);
+      console.log(JSON.stringify(result));
+      response.end(JSON.stringify(result));
     }
-    if (requestHeader === "application/json") {
+    if (request.method === "POST" && request.url === "/json") {
+      console.log(data);
+      response.setHeader("Content-Type", "application/json");
       response.end(data);
     }
   });
 }
-server.listen(9000, "localhost", () => {
-  console.log("server is running on the 7000 port");
+server.listen(4444, "localhost", () => {
+  console.log("server is running on the 4444 port");
 });
