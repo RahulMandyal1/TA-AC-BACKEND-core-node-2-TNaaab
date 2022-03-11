@@ -65,7 +65,7 @@ function handleRequest7(req, res) {
     }
   });
 }
-server.listen(8888, "127.0.0.8", () => {
+server7.listen(8888, "127.0.0.8", () => {
   console.log("Listening for a request on the 8888 port ");
 });
 
@@ -115,7 +115,7 @@ function handleRequest9(request, response) {
     response.end(`<h1>${objectKeys[0]}</h1><h2>${objectKeys[1]}</h2>`);
   });
 }
-server3.listen(1111, "127.0.0.6", () => {
+server9.listen(1111, "127.0.0.6", () => {
   console.log("Server is running on the port 1111");
 });
 
